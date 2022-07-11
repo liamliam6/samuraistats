@@ -200,8 +200,8 @@ export default function CustomPaginationActionsTable() {
         rows[c].division = getDivision(rows[c].rank);
     }
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(-1);
+  //const [page, setPage] = React.useState(0);
+  //const [rowsPerPage, setRowsPerPage] = React.useState(-1);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

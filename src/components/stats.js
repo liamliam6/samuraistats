@@ -77,7 +77,7 @@ function Stats( {wallet} ){
       const unlocked      = maxEnergy-minEnergy;
       const locked        = maxPotential-maxEnergy;
       const calculateNrg  = (unlocked / (unlocked+locked))*100;
-      const stakeText     = (maxPotential-maxEnergy) == 0 ? 'Fully unlocked!' : 'Stake to unlock more';
+      const stakeText     = (maxPotential-maxEnergy) === 0 ? 'Fully unlocked!' : 'Stake to unlock more';
       const samurai       = data[2].data;
       const totalRes      = data[3].data;
       const ratio         = totalRes.estimatedPointRatio;
@@ -201,19 +201,19 @@ function Stats( {wallet} ){
             var tier = samurai[i].image_properties.rare_tier;
             var energy = 0;
 
-            if(tier == 1){
+            if(tier === 1){
               energy = 20;
             }
-            if(tier == 2){
+            if(tier === 2){
               energy = 30;
             }
-            if(tier == 3){
+            if(tier === 3){
               energy = 40;
             }
-            if(tier == 4){
+            if(tier === 4){
               energy = 60;
             }
-            if(tier == 5){
+            if(tier === 5){
               energy = 80;
             }
 
