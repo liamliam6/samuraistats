@@ -9,7 +9,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+//import Typography from '@mui/material/Typography';
 
 const App = () => {
 
@@ -35,7 +35,7 @@ const App = () => {
     const [walletList, setWallets] = useState(null);
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    //const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(() => {

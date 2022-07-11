@@ -1,20 +1,26 @@
 import React, {useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+
+/*import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';*/
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
+
+/*import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';*/
+
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
+
+/*import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
+import LastPageIcon from '@mui/icons-material/LastPage';*/
+
 import TableHead from '@mui/material/TableHead';
 import axios from 'axios';
 
@@ -200,7 +206,7 @@ export default function CustomPaginationActionsTable() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+/*
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -209,7 +215,7 @@ export default function CustomPaginationActionsTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+*/
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 400, maxHeight: 500 }} >

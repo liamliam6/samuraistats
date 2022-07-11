@@ -10,9 +10,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-import smglogo from '../images/smg_logo.png';
+//import smglogo from '../images/smg_logo.png';
 import smglogo2 from '../images/smg_logo2.png';
-
+/*
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -22,7 +22,7 @@ const theme = createTheme({
       'sans-serif',
     ].join(','),
   },});
-
+*/
 const pages = [''];
 
 const ResponsiveAppBar = () => {

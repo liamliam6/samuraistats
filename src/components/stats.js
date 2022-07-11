@@ -10,7 +10,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Stack from "@mui/material/Stack";
 import LinearProgress from '@mui/material/LinearProgress';
 import Link from '@mui/material/Link';
-import Slider from '@mui/material/Slider';
+//import Slider from '@mui/material/Slider';
 
 function Stats( {wallet} ){
 
@@ -50,7 +50,7 @@ function Stats( {wallet} ){
     if (data) {
       //console.log(data);
 
-      function getSubDiv(s){
+      /*function getSubDiv(s){
         if(s === 'I'){
           return '1';
         }
@@ -66,7 +66,7 @@ function Stats( {wallet} ){
         if(s === 'V'){
           return '5';
         }
-      }
+      }*/
 
       const todayEarnings = data[0].data.today_earnings;
       const totalEarnings = data[0].data.total_earnings;
@@ -95,14 +95,14 @@ function Stats( {wallet} ){
       const walletTrunc   = wallet.replace(wallet.substring(6,38), "...");
 
       let diff = todayEarnings - earningHolder;
-      let open;
+      //let open;
       if(diff === 0){
           diff = null;
           open = false
       }
 
       if(diff !== 0 && diff !== null){
-        open = true;
+        //open = true;
         diff = '+'+diff;
       }
 
@@ -116,19 +116,19 @@ function Stats( {wallet} ){
           genCount++;
         }
 
-        if(tier == 1){
+        if(tier === 1){
             energyCalc = energyCalc+20;
         }
-        if(tier == 2){
+        if(tier === 2){
             energyCalc = energyCalc+30;
         }
-        if(tier == 3){
+        if(tier === 3){
             energyCalc = energyCalc+40;
         }
-        if(tier == 4){
+        if(tier === 4){
             energyCalc = energyCalc+60;
         }
-        if(tier == 5){
+        if(tier === 5){
             energyCalc = energyCalc+80;
         }
       }
@@ -180,6 +180,7 @@ function Stats( {wallet} ){
       m4 = m4.setDate(m4.getDate()+1);
       msDiff = (m4 - calc);
     }
+    console.log(multiplier);
 
     let diffMins = Math.floor(msDiff / 60000);
 
