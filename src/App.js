@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import Nav from './components/nav.js';
 import Stats from './components/stats.js';
-import Leaderboard from './components/leaderboard.js';
+//import Leaderboard from './components/leaderboard.js';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -91,7 +91,7 @@ const App = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={modalStyle}>
-                   <Leaderboard />
+                   Leaderboard
                   </Box>
                 </Modal>
               </div>
