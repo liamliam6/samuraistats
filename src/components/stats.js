@@ -98,7 +98,7 @@ function Stats( {wallet} ){
       //let open;
       if(diff === 0){
           diff = null;
-          open = false
+          //open = false
       }
 
       if(diff !== 0 && diff !== null){
