@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    font-family: 'Roboto', 'sans-serif';
+    background:#1c1c1c;
+    color:white;
+}
+@keyframes shrinkjump {
+    
+    
+    0%, 20% {
+        transform: scale(-0)
+    }
+
+    25%, 79% {
+      transform: scale(1.1) translate(15px, -30px) rotate(20deg);
+    }
+    
+    80%, 100% {
+      transform: scale(-0.0) translate(0, 0);
+    }
+}
+
+@keyframes imgEffect {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
