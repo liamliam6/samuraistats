@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './components/nav.js';
 import Stats from './components/stats.js';
 //import Leaderboard from './components/leaderboard.js';
@@ -22,60 +22,72 @@ const App = () => {
     height: '50vw',
     maxHeight: '800px',
     overflow: 'scroll',
-    'overflow-x': 'hidden',
+    overflowX: 'hidden',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   };
-    
 
-    const wallets = localStorage.getItem('wallets');
-    
-    const [walletList, setWallets] = useState(null);
 
-    const [open, setOpen] = React.useState(false);
-    //const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const wallets = localStorage.getItem('wallets');
 
-    useEffect(() => {
-        setWallets()
-    }, [walletList])
+  const [walletList, setWallets] = useState(null);
 
-    let wArr = [];
-    
-    if(wallets){
+  const [open, setOpen] = React.useState(false);
+  //const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    setWallets()
+  }, [walletList])
+
+  let wArr = [];
+
+  if (wallets) {
     wArr = wallets.split(',');
-    }
-    const getStats = wArr.map((w) =>
+  }
 
-        <Stats wallet={w} />
-        
-    )
+  
+  const reset = function () {
+    localStorage.removeItem('wallets');
+    console.log('reloading');
+    window.location.reload(false);
     
-    const reset = function(){
-        localStorage.removeItem('wallets');
-        console.log('reloading');
-        window.location.reload(false);
-        
+  }
+  
+  const add = function () {
+    let curr = localStorage.getItem('wallets');
+    if (wallets) {
+      const walletInput = document.getElementById('walletInput').value;
+      if (walletInput.length === 42 && !curr.split(',').includes(walletInput)) {
+        localStorage.setItem('wallets', curr + ',' + document.getElementById('walletInput').value)
+      }
     }
-
-    const add = function(){
-        console.log('run');
-        let curr = localStorage.getItem('wallets');
-        if(wallets){
-            if(document.getElementById('walletInput').value){
-                localStorage.setItem('wallets', curr+','+document.getElementById('walletInput').value )
-            }
-        }
-        else{
-            localStorage.setItem('wallets', document.getElementById('walletInput').value )
-        }
-
-        window.location.reload(false);
+    else {
+      localStorage.setItem('wallets', document.getElementById('walletInput').value)
     }
     
-    if(wallets){
+    window.location.reload(false);
+  }
+  
+  const remove = function (walletToRemove) {
+    let curr = localStorage.getItem('wallets');
+    console.log(`curr ${JSON.stringify(curr)} | WTR ${walletToRemove}`)
+    if (wallets) {
+        const newWallets = curr.split(',').filter(w => w !== walletToRemove);
+        console.log('newWallets', newWallets);
+        localStorage.setItem('wallets', newWallets.join(','))
+    }
+    
+    window.location.reload(false)
+  }
+
+  const getStats = wArr.map((w) =>
+    <Stats key={w} wallet={w} onRemove={remove} />
+  )
+  
+  if (wallets) {
     return (
       <div>
         <Nav />
@@ -91,7 +103,7 @@ const App = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={modalStyle}>
-                   Leaderboard
+                    Leaderboard
                   </Box>
                 </Modal>
               </div>
@@ -101,7 +113,7 @@ const App = () => {
                 sx={{
                   background: "#959595",
                   border: "1px solid white",
-                  "border-radius": "4px",
+                  borderRadius: "4px",
                 }}
                 fullWidth
               />
@@ -113,7 +125,7 @@ const App = () => {
                 sx={{
                   background: "#959595",
                   border: "1px solid white",
-                  "font-color": "white",
+                  color: "white",
                 }}
               >
                 <Button onClick={add}>Add</Button>
@@ -133,41 +145,34 @@ const App = () => {
         </Container>
       </div>
     );
-    }else{
-        return (
-            <div>
-          
+  } else {
+    return (
+      <div>
+
         <Nav />
         <br></br>
         <Container >
-            <Grid container spacing={1}>
-              <Grid container item xs={7} md={10} lg={10}>
-                <TextField id="walletInput" label="Wallet Address" sx={{
-                  background: "#959595",
-                  border: "1px solid white",
-                  "border-radius": "4px",
-                }} fullWidth />
-              </Grid>
-              <Grid container item xs={5} md={2} lg={2}>
-                <ButtonGroup
-                  variant="contained"
-                  aria-label="outlined primary button group">
-                  <Button onClick={add}>Add</Button>
-                  <Button variant="outlined" onClick={reset}>Reset</Button>
-                </ButtonGroup>
-              </Grid>
+          <Grid container spacing={1}>
+            <Grid container item xs={7} md={10} lg={10}>
+              <TextField id="walletInput" label="Wallet Address" sx={{
+                background: "#959595",
+                border: "1px solid white",
+                borderRadius: "4px",
+              }} fullWidth />
             </Grid>
-        </Container>
-        <Container>
-            <div>
-                    
-            </div>
-
-    
+            <Grid container item xs={5} md={2} lg={2}>
+              <ButtonGroup
+                variant="contained"
+                aria-label="outlined primary button group">
+                <Button onClick={add}>Add</Button>
+                <Button variant="outlined" onClick={reset}>Reset</Button>
+              </ButtonGroup>
+            </Grid>
+          </Grid>
         </Container>
       </div>
-        );
-    }
+    );
+  }
 }
 
 export default App;
