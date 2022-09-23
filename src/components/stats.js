@@ -19,7 +19,7 @@ function Stats({ wallet, onRemove }) {
   const energyUrl = `https://api.risingsun.finance/energy/${wallet}`;
   const deckUrl = `https://api.risingsun.finance/v2/samurai/deckmetadata/${wallet}`;
   const totalUrl = `https://api.risingsun.finance/earnings/total`;
-  const winUrl = `https://api.samurailegends.io/v3/game/samurai-rising/last/${wallet}/7d`;
+  //const winUrl = `https://api.samurailegends.io/v3/game/samurai-rising/last/${wallet}/7d`;
   //const rankUrl       = `https://gameserver.samurairising.app/ranks/${wallet}`;
   //const leaderUrl     = `https://gameserver.samurairising.app/ranks/`;
 
@@ -34,7 +34,7 @@ function Stats({ wallet, onRemove }) {
     const interval = setInterval(() => {
 
       axios
-        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl), axios.get(winUrl)])//, axios.get(leaderUrl)
+        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl)])//, axios.get(winUrl)
         .then(res => {
           //console.log('setting data');
           setData(res);
@@ -47,7 +47,7 @@ function Stats({ wallet, onRemove }) {
     }, 5000);
     return () => clearInterval(interval);
 
-  }, [earningsUrl, energyUrl, deckUrl, totalUrl, winUrl])//, rankUrl, leaderUrl
+  }, [earningsUrl, energyUrl, deckUrl, totalUrl])//, winUrl
 
   if (data) {
     //console.log(data);
@@ -83,14 +83,14 @@ function Stats({ wallet, onRemove }) {
     const samurai = data[2].data;
     const totalRes = data[3].data;
     const ratio = totalRes.estimatedPointRatio;
-    const winRates = data[4].data;
-    const winTotal = winRates.winner || 0;
-    const lossTotal = winRates.loser || 0;
-    const gameTotal = winTotal+lossTotal || 0;
+    const winRates = '';//;data[4].hasOwnProperty('winner') ? data[4].data : '';
+    const winTotal = winRates.hasOwnProperty('winner') ? winRates.winner : 0;
+    const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser : 0;
+    const gameTotal = winTotal+lossTotal;
     const winRatio = ((winTotal / gameTotal)*100).toFixed(2) || 0;
-    console.log('winTotal: '+winTotal);
-    console.log('lossTotal: '+lossTotal);
-    console.log('winRatio: '+winRatio);
+    //console.log('winTotal: '+winTotal);
+    //console.log('lossTotal: '+lossTotal);
+    //console.log('winRatio: '+winRatio);
     let genCount = 0;
     //const ranks         = data[3].data;
     //const rankImg       = ranks.division.toLowerCase() + getSubDiv(ranks.subdivision) +'.png';
