@@ -34,7 +34,7 @@ function Stats({ wallet, onRemove }) {
     const interval = setInterval(() => {
 
       axios
-        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl), axios.get(winUrl)])//
+        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl)])//, axios.get(winUrl)
         .then(res => {
           //console.log('setting data');
           setData(res);
@@ -47,7 +47,7 @@ function Stats({ wallet, onRemove }) {
     }, 5000);
     return () => clearInterval(interval);
 
-  }, [earningsUrl, energyUrl, deckUrl, totalUrl, winUrl])//, winUrl
+  }, [earningsUrl, energyUrl, deckUrl, totalUrl])//, winUrl
 
   if (data) {
     //console.log(data);
@@ -83,7 +83,7 @@ function Stats({ wallet, onRemove }) {
     const samurai = data[2].data;
     const totalRes = data[3].data;
     const ratio = totalRes.estimatedPointRatio;
-    const winRates = data[4].data;
+    const winRates = '';//data[4].data;
     const winTotal = winRates.hasOwnProperty('winner') ? winRates.winner : 0;
     const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser : 0;
     const gameTotal = winTotal+lossTotal;
