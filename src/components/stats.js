@@ -19,7 +19,7 @@ function Stats({ wallet, onRemove }) {
   const energyUrl = `https://api.risingsun.finance/energy/${wallet}`;
   const deckUrl = `https://api.risingsun.finance/v2/samurai/deckmetadata/${wallet}`;
   const totalUrl = `https://api.risingsun.finance/earnings/total`;
-  const winUrl = `https://api.samurailegends.io/v3/game/samurai-rising/last/${wallet}/7d`;
+  //const winUrl = `https://api.samurailegends.io/v3/game/samurai-rising/last/${wallet}/7d`;
   //const rankUrl       = `https://gameserver.samurairising.app/ranks/${wallet}`;
   //const leaderUrl     = `https://gameserver.samurairising.app/ranks/`;
 
