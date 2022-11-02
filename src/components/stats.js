@@ -19,7 +19,7 @@ function Stats({ wallet, onRemove }) {
   const energyUrl = `https://api.risingsun.finance/energy/${wallet}`;
   const deckUrl = `https://api.risingsun.finance/v2/samurai/deckmetadata/${wallet}`;
   const totalUrl = `https://api.risingsun.finance/earnings/total`;
-  //const winUrl = `https://api.samurailegends.io/v3/game/samurai-rising/last/${wallet}/7d`;
+  const winUrl = `http://34.160.72.192/game-result/last/${wallet}/7d`;
   //const rankUrl       = `https://gameserver.samurairising.app/ranks/${wallet}`;
   //const leaderUrl     = `https://gameserver.samurairising.app/ranks/`;
 
@@ -34,7 +34,7 @@ function Stats({ wallet, onRemove }) {
     const interval = setInterval(() => {
 
       axios
-        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl)])//, axios.get(winUrl)
+        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl), axios.get(winUrl)])//
         .then(res => {
           //console.log('setting data');
           setData(res);
@@ -47,7 +47,7 @@ function Stats({ wallet, onRemove }) {
     }, 5000);
     return () => clearInterval(interval);
 
-  }, [earningsUrl, energyUrl, deckUrl, totalUrl])//, winUrl
+  }, [earningsUrl, energyUrl, deckUrl, totalUrl, winUrl])//
 
   if (data) {
     //console.log(data);
@@ -83,7 +83,7 @@ function Stats({ wallet, onRemove }) {
     const samurai = data[2].data;
     const totalRes = data[3].data;
     const ratio = totalRes.estimatedPointRatio;
-    const winRates = '';//data[4].data;
+    const winRates = data[4].data;//
     const winTotal = winRates.hasOwnProperty('winner') ? winRates.winner : 0;
     const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser : 0;
     const gameTotal = winTotal+lossTotal;
