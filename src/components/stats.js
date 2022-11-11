@@ -19,7 +19,7 @@ function Stats({ wallet, onRemove }) {
   const energyUrl = `https://api.risingsun.finance/energy/${wallet}`;
   const deckUrl = `https://api.risingsun.finance/v2/samurai/deckmetadata/${wallet}`;
   const totalUrl = `https://api.risingsun.finance/earnings/total`;
-  const winUrl = `http://34.160.72.192/game-result/last/${wallet}/7d`;
+  const winUrl = `https://samurailegends.dev/game/samurai-rising/game-result/last/${wallet}/7d`;
   //const rankUrl       = `https://gameserver.samurairising.app/ranks/${wallet}`;
   //const leaderUrl     = `https://gameserver.samurairising.app/ranks/`;
 
@@ -84,8 +84,8 @@ function Stats({ wallet, onRemove }) {
     const totalRes = data[3].data;
     const ratio = totalRes.estimatedPointRatio;
     const winRates = data[4].data;//
-    const winTotal = winRates.hasOwnProperty('winner') ? winRates.winner : 0;
-    const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser : 0;
+    const winTotal = winRates.hasOwnProperty('winner') ? winRates.winner.total : 0;
+    const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser.total : 0;
     const gameTotal = winTotal+lossTotal;
     const winRatio = ((winTotal / gameTotal)*100).toFixed(2) || 0;
     //console.log('winTotal: '+winTotal);
