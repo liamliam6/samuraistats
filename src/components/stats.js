@@ -20,6 +20,7 @@ function Stats({ wallet, onRemove }) {
   const deckUrl = `https://api.risingsun.finance/v2/samurai/deckmetadata/${wallet}`;
   const totalUrl = `https://api.risingsun.finance/earnings/total`;
   const winUrl = `https://samurailegends.dev/game/samurai-rising/game-result/last/${wallet}/7d`;
+  const landUrl = `https://api.risingsun.finance/lands/deckmetadata/${wallet}`;
   //const rankUrl       = `https://gameserver.samurairising.app/ranks/${wallet}`;
   //const leaderUrl     = `https://gameserver.samurairising.app/ranks/`;
 
@@ -34,7 +35,7 @@ function Stats({ wallet, onRemove }) {
     const interval = setInterval(() => {
 
       axios
-        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl), axios.get(winUrl)])//
+        .all([axios.get(earningsUrl), axios.get(energyUrl), axios.get(deckUrl), axios.get(totalUrl), axios.get(winUrl), axios.get(landUrl)])//
         .then(res => {
           //console.log('setting data');
           setData(res);
@@ -47,7 +48,7 @@ function Stats({ wallet, onRemove }) {
     }, 5000);
     return () => clearInterval(interval);
 
-  }, [earningsUrl, energyUrl, deckUrl, totalUrl, winUrl])//
+  }, [earningsUrl, energyUrl, deckUrl, totalUrl, winUrl, landUrl])//
 
   if (data) {
     //console.log(data);
@@ -88,6 +89,9 @@ function Stats({ wallet, onRemove }) {
     const lossTotal = winRates.hasOwnProperty('loser') ? winRates.loser.total : 0;
     const gameTotal = winTotal+lossTotal;
     const winRatio = ((winTotal / gameTotal)*100).toFixed(2) || 0;
+    const lands = data[5].data;
+    //console.log('Lands...');
+    //console.log(lands);
     //console.log('winTotal: '+winTotal);
     //console.log('lossTotal: '+lossTotal);
     //console.log('winRatio: '+winRatio);
@@ -190,13 +194,32 @@ function Stats({ wallet, onRemove }) {
       m4 = m4.setDate(m4.getDate() + 1);
       msDiff = (m4 - calc);
     }
-    console.log(multiplier);
+    //console.log(multiplier);
 
     let diffMins = Math.floor(msDiff / 60000);
 
     let nextRefill = timeConvert(diffMins);
 
+    const checkLand = function (l) {
 
+      if(lands.length > 0){
+
+        for(var i=0;i<lands.length;i++){
+          
+          document.write
+          (`
+          <div style="display:inline-grid;min-width:24%">
+          <iframe src="https://land.samurairising.app/${lands[i].id}" width="100%" height="700" style="border:1px solid black;">
+          </iframe>
+          </div>
+          `)
+        }
+
+        
+
+      }
+
+    }
 
     const downloadCsv = function (e) {
 
@@ -290,6 +313,7 @@ function Stats({ wallet, onRemove }) {
               >
                 <Button color='error' sx={{ backgroundColor: 'red' }} onClick={() => onRemove(wallet)}><DeleteForever /></Button>
                 <Button id={wallet} sx={{ 'backgroundColor': '#28a745' }} onClick={downloadCsv}>Export .csv</Button>
+                <Button id={wallet} sx={{ 'backgroundColor': '#b256ff' }} onClick={checkLand}>Check Land</Button>
               </ButtonGroup>
             </Stack>
           </Grid>
