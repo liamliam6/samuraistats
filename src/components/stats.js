@@ -189,12 +189,12 @@ function Stats({ wallet, onRemove }) {
       msDiff = (m3 - calc);
     }
     else {
-      //multiplier = 4;
+      multiplier = 4;
       let m4 = new Date(yr, mon, day, 0, 0, 0);
       m4 = m4.setDate(m4.getDate() + 1);
       msDiff = (m4 - calc);
     }
-    //console.log(multiplier);
+    console.log(multiplier);
 
     let diffMins = Math.floor(msDiff / 60000);
 
